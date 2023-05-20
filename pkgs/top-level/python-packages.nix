@@ -5975,6 +5975,12 @@ self: super: with self; {
     ghostscript = pkgs.ghostscript_headless;
   };
 
+  matplotlib-3_6_2 = callPackage ../development/python-modules/matplotlib-3_6_2 {
+    stdenv = if stdenv.isDarwin then pkgs.clangStdenv else pkgs.stdenv;
+    inherit (pkgs.darwin.apple_sdk.frameworks) Cocoa;
+    ghostscript = pkgs.ghostscript_headless;
+  };
+
   matplotlib-inline = callPackage ../development/python-modules/matplotlib-inline { };
 
   matrix-api-async = callPackage ../development/python-modules/matrix-api-async { };
